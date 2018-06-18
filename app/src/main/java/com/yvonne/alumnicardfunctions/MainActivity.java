@@ -1,8 +1,13 @@
 package com.yvonne.alumnicardfunctions;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -16,6 +21,12 @@ public class MainActivity extends AppCompatActivity {
     public static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     public static Boolean mLocationPermissionGranted = false;
     public static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
+
+    public static final String NAME = "EVENT_NAME";
+    public static final String LOCATION = "EVENT_LOCATION";
+    public static final String RADIUS = "EVENT_RADIUS";
+    public static final String SHARE_PREFERENCE = "SHARE_PREFERENCE";
+    public static final String EVENT_NUMBER = "EVENT_NUMBER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
             case LOCATION_PERMISSION_REQUEST_CODE:{
                 if (grantResults.length > 0){
                     for(int i = 0; i <grantResults.length;i++){
-                        if (grantResults[i]!= PackageManager.PERMISSION_GRANTED)
+                        if (grantResults[i]!= PackageManager.PERMISSION_GRANTED){
                             mLocationPermissionGranted = false;
                             return;
+                        }
                     }
                     mLocationPermissionGranted = true;
 
@@ -67,4 +79,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ListActivity.class);
         startActivity(intent);
     }
+
+
+
+
+
+
 }
