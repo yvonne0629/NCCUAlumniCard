@@ -27,7 +27,7 @@
     <TextView
         android:id="@+id/user_location_activity_name"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="13dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -54,11 +54,9 @@
         android:id="@+id/checkin_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="136dp"
         android:text="@string/checkin_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="136dp"
+        tools:text="我要報到/兌換" />
 
 </android.support.constraint.ConstraintLayout>
