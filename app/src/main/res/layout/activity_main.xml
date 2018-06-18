@@ -16,7 +16,7 @@
         android:layout_marginRight="240dp"
         android:layout_marginStart="16dp"
         android:onClick="setNewLocation"
-        android:text="@string/set_button"
+        android:text="@string/new_event_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

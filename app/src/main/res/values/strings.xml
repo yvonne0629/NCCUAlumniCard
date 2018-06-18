@@ -5,7 +5,8 @@
     <string name="use_current_location">Use current location</string>
     <string name="or">or</string>
     <string name="range">Enter any radius…</string>
-    <string name="set_button">Set Range</string>
+    <string name="set_button">Save Event</string>
+    <string name="new_event_button">New Event</string>
     <string name="setting_button">Settings</string>
     <string name="checking_button">Check</string>
     <string name="title_activity_user_loacation">Map</string>

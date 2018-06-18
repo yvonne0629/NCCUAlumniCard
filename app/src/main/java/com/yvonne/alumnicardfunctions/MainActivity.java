@@ -1,7 +1,9 @@
 package com.yvonne.alumnicardfunctions;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -20,52 +22,17 @@ public class MainActivity extends AppCompatActivity {
     public static Boolean mLocationPermissionGranted = false;
     public static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
 
-    private final LocationListener mLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(final Location location) {
-            string a = "";
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-            string a = "";
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-            string a = "";
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-            string a = "";
-        }
-    };
-
+    public static final String NAME = "EVENT_NAME";
+    public static final String LOCATION = "EVENT_LOCATION";
+    public static final String RADIUS = "EVENT_RADIUS";
+    public static final String SHARE_PREFERENCE = "SHARE_PREFERENCE";
+    public static final String EVENT_NUMBER = "EVENT_NUMBER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getLocationPermission();
-
-        LocationManager mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION};
-
-        if(ContextCompat.checkSelfPermission(this.getApplicationContext(), FINE_LOCATION) == (PackageManager.PERMISSION_GRANTED)) {
-            if (ContextCompat.checkSelfPermission(this.getApplicationContext(), COARSE_LOCATION) == (PackageManager.PERMISSION_GRANTED)) {
-                mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10,
-                        10, mLocationListener);
-                mLocationPermissionGranted = true;
-            } else {
-                ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST_CODE);
-            }
-        }else{
-            ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_REQUEST_CODE);
-        }
-
-
     }
 
     public void getLocationPermission(){
@@ -91,9 +58,10 @@ public class MainActivity extends AppCompatActivity {
             case LOCATION_PERMISSION_REQUEST_CODE:{
                 if (grantResults.length > 0){
                     for(int i = 0; i <grantResults.length;i++){
-                        if (grantResults[i]!= PackageManager.PERMISSION_GRANTED)
+                        if (grantResults[i]!= PackageManager.PERMISSION_GRANTED){
                             mLocationPermissionGranted = false;
                             return;
+                        }
                     }
                     mLocationPermissionGranted = true;
 
@@ -111,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ListActivity.class);
         startActivity(intent);
     }
-
-
 
 
 
