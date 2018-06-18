@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">AlumniCardFunctions</string>
     <string name="title_activity_maps">Map</string>
-    <string name="entering_location_message">Enter any location…</string>
-    <string name="use_current_location">Use current location</string>
-    <string name="or">or</string>
-    <string name="range">Enter any radius…</string>
-    <string name="set_button">Save Event</string>
-    <string name="new_event_button">New Event</string>
+    <string name="entering_location_message">輸入地點…</string>
+    <string name="use_current_location">使用當前位置</string>
+    <string name="or">或者</string>
+    <string name="range">輸入範圍半徑…</string>
+    <string name="set_button">建立新活動</string>
+    <string name="new_event_button">建立活動</string>
     <string name="setting_button">Settings</string>
-    <string name="checking_button">Check</string>
+    <string name="checking_button">查看細節</string>
     <string name="title_activity_user_loacation">Map</string>
-    <string name="activity_naming_message">Name your activity…</string>
+    <string name="activity_naming_message">為你的活動命名…</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="actvity_name_message">活動名稱：</string>
     <string name="location_message">地點：</string>

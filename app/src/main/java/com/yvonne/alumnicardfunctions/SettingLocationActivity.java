@@ -7,10 +7,8 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -20,30 +18,19 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.places.GeoDataClient;
-import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.maps.android.SphericalUtil;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,10 +58,12 @@ public class SettingLocationActivity extends FragmentActivity implements OnMapRe
     private final CustomLocationListener mLocationListener = new CustomLocationListener();
     private Marker marker;
     private LatLng latLng;
+    private String eventAddress;
 
     private static final String NAME = "EVENT_NAME";
     private static final String LATITUDE = "EVENT_LATITUDE";
     private static final String LONGTITUDE = "EVENT_LONGTITUDE";
+    private static final String ADDRESS = "EVENT_ADDRESS";
     private static final String RADIUS = "EVENT_RADIUS";
 
     private static final String SHARE_PREFERENCE = "SHARE_PREFERENCE";
@@ -151,6 +140,25 @@ public class SettingLocationActivity extends FragmentActivity implements OnMapRe
         Location location = mLocationListener.getLocation();
         latLng = new LatLng(location.getLatitude(),location.getLongitude());
         moveCamera(latLng,DEFAULT_ZOOM,"Current Location");
+
+        Geocoder geocoder = new Geocoder(SettingLocationActivity.this);
+        List<Address> list = new ArrayList<>();
+        try {
+            list = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+        }catch (IOException e){
+            Log.e(TAG,"geoLocate: IOException" + e.getMessage());
+        }
+
+        if(list.size()>0){
+            Address address = list.get(0);
+            eventAddress = address.getAddressLine(0);
+            Log.d(TAG,"geoLocate: found a location" + address.toString());
+            latLng = new LatLng(address.getLatitude(),address.getLongitude());
+            moveCamera(latLng,DEFAULT_ZOOM,address.getAddressLine(0));
+            hideSoftKeyboard();
+        }
+
+
     }
 
 
@@ -191,6 +199,7 @@ public class SettingLocationActivity extends FragmentActivity implements OnMapRe
 
         if(list.size()>0){
             Address address = list.get(0);
+            eventAddress = address.getAddressLine(0);
             Log.d(TAG,"geoLocate: found a location" + address.toString());
             latLng = new LatLng(address.getLatitude(),address.getLongitude());
             moveCamera(latLng,DEFAULT_ZOOM,address.getAddressLine(0));
@@ -236,6 +245,7 @@ public class SettingLocationActivity extends FragmentActivity implements OnMapRe
         editor.putFloat(LATITUDE + eventNumber, (float)latLng.latitude);
         editor.putFloat(LONGTITUDE + eventNumber, (float)latLng.longitude);
         editor.putInt(RADIUS + eventNumber, Integer.valueOf(mRadius.getText().toString()));
+        editor.putString(ADDRESS + eventNumber, eventAddress);
         editor.apply();
         finish();
     }

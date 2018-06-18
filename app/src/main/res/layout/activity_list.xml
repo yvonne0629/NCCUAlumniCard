@@ -6,61 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ListActivity">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="84dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="64dp"
-        android:onClick="checkLocation"
-        android:text="@string/check"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/location_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/location_message"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_name" />
-
-    <TextView
-        android:id="@+id/activity_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="活動名稱"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/location_address"
-        android:layout_width="186dp"
-        android:layout_height="46dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="地址"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/location_message"
-        app:layout_constraintTop_toBottomOf="@+id/activity_name" />
-
     <TableLayout
         android:id="@+id/Table_Layout"
-        android:layout_width="387dp"
-        android:layout_height="394dp"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="120dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <TableRow
             android:layout_width="match_parent"
