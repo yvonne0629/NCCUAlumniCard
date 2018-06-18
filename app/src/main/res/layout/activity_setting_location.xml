@@ -18,7 +18,21 @@
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ic_search"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ic_search"
+        app:layout_constraintEnd_toEndOf="@+id/location_setting_field"
+        app:layout_constraintTop_toBottomOf="@+id/activity_naming_field" />
+
 
     <Button
         android:id="@+id/current_location_button"
@@ -27,7 +41,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:onClick="getDeviceLocation"
+
         android:text="@string/use_current_location"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -39,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="@string/or"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/location_setting_field" />
