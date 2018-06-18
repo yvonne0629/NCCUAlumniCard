@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/common_google_signin_btn_text_light_default"
     tools:context=".SettingLocationActivity">
 
     <EditText
@@ -15,71 +16,53 @@
         android:layout_marginTop="52dp"
         android:ems="10"
         android:hint="@string/entering_location_message"
+        android:textColorHint="@android:color/white"
         android:inputType="textPersonName"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageView
-        android:id="@+id/ic_search"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="16dp"
-
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/ic_search"
-        app:layout_constraintEnd_toEndOf="@+id/location_setting_field"
-        app:layout_constraintTop_toBottomOf="@+id/activity_naming_field" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/current_location_button"
         android:layout_width="177dp"
         android:layout_height="43dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
-
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/location_setting_field"
+        android:layout_marginEnd="89dp"
+        android:onClick="getDeviceLocation"
         android:text="@string/use_current_location"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/location_setting_field" />
+        app:layout_constraintTop_toBottomOf="@+id/location_setting_field"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="89dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_alignBaseline="@+id/current_location_button"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="98dp"
         android:text="@string/or"
+        android:textColorHint="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location_setting_field" />
-
-    <EditText
-        android:id="@+id/radius_field"
-        android:layout_width="154dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/range"
-        android:inputType="textPersonName"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_location_button" />
+        app:layout_constraintTop_toBottomOf="@+id/location_setting_field"
+        android:layout_marginLeft="98dp"
+        android:layout_alignParentLeft="true" />
 
     <Button
         android:id="@+id/set_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="136dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@+id/activity_naming_field"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/activity_naming_field"
+        android:layout_marginTop="151dp"
         android:text="@string/set_button"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,15 +73,14 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp"
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
-        tools:context=".SettingLocationActivity" />
+        tools:context=".SettingLocationActivity"
+        android:layout_alignParentLeft="true" />
 
     <EditText
         android:id="@+id/activity_naming_field"
@@ -107,27 +89,41 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:textColorHint="@android:color/white"
         android:ems="10"
         android:hint="@string/activity_naming_message"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/radius_field"
+        android:layout_width="154dp"
+        android:layout_height="40dp"
+        android:layout_alignStart="@+id/location_setting_field"
+        android:layout_alignTop="@+id/set_button"
+        android:ems="10"
+        android:hint="@string/range"
+        android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_location_button"
+        android:layout_alignLeft="@+id/location_setting_field" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="70dp"
-        android:layout_height="35dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="43dp"
+        android:layout_alignLeft="@+id/location_setting_field"
+        android:layout_alignStart="@+id/location_setting_field"
+        android:layout_below="@+id/location_setting_field"
         android:onClick="search"
         android:text="@string/search"
-        android:textSize="10sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/location_setting_field"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
